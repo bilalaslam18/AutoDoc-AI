@@ -7,7 +7,7 @@ const nextConfig = {
   images: { unoptimized: true },
   // https://nextjs.org/docs/app/api-reference/next-config-js/serverComponentsExternalPackages
   experimental: {
-    serverComponentsExternalPackages: ['mermaid', 'tunnel-agent'],
+    serverComponentsExternalPackages: ['mermaid'],
   },
 };
 
