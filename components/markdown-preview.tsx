@@ -15,7 +15,18 @@ export function MarkdownPreview({ content }: MarkdownPreviewProps) {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
-          code({ node, inline, className, children, ...props }) {
+          code({
+            node,
+            inline,
+            className,
+            children,
+            ...props
+          }: {
+            node?: any;
+            inline?: boolean;
+            className?: string;
+            children?: any;
+          }) {
             const match = /language-(\w+)/.exec(className || "");
             return !inline && match ? (
               <SyntaxHighlighter
@@ -32,7 +43,7 @@ export function MarkdownPreview({ content }: MarkdownPreviewProps) {
               </code>
             );
           },
-          // Override default link behavior
+
           a: ({ node, ...props }) => (
             <a
               {...props}
@@ -41,7 +52,7 @@ export function MarkdownPreview({ content }: MarkdownPreviewProps) {
               className="text-primary underline hover:text-primary/80"
             />
           ),
-          // Customize headings
+
           h1: ({ node, ...props }) => (
             <h1 {...props} className="text-2xl font-bold mt-8 mb-4" />
           ),
