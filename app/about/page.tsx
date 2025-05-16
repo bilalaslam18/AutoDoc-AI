@@ -134,55 +134,46 @@ export default function AboutPage() {
                 Meet the Team
               </h2>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                We're a dedicated team of developers and AI specialists
-                passionate about making documentation easier.
+                We're two full-stack developers passionate about building
+                AI-powered tools that make developers' lives easier.
               </p>
             </div>
           </div>
-          <div className="grid gap-8 mt-12 md:grid-cols-3">
+          <div className="grid gap-8 mt-12 md:grid-cols-2">
             <div className="flex flex-col items-center text-center space-y-4">
               <div className="h-32 w-32 rounded-full bg-muted flex items-center justify-center overflow-hidden">
                 <img
-                  src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg"
+                  src="https://res.cloudinary.com/dqpyagkv3/image/upload/v1745504620/IMG_0788_xzb0g0_c_pad_b_gen_fill_ar_1_1_s9taup.jpg"
                   alt="Team member"
                   className="h-full w-full object-cover"
                 />
               </div>
               <div>
-                <h3 className="text-xl font-bold">Alex Johnson</h3>
-                <p className="text-muted-foreground">Founder & AI Lead</p>
+                <h3 className="text-xl font-bold">Muhammad Bilal</h3>
+                <p className="text-muted-foreground">
+                  Co-Founder & Full-Stack Developer
+                </p>
               </div>
             </div>
             <div className="flex flex-col items-center text-center space-y-4">
               <div className="h-32 w-32 rounded-full bg-muted flex items-center justify-center overflow-hidden">
                 <img
-                  src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg"
+                  src="https://res.cloudinary.com/dqpyagkv3/image/upload/v1747390924/WhatsApp_Image_2025-05-16_at_15.20.39_dwo5on.jpg"
                   alt="Team member"
                   className="h-full w-full object-cover"
                 />
               </div>
               <div>
-                <h3 className="text-xl font-bold">Sarah Chen</h3>
-                <p className="text-muted-foreground">CTO & Backend Developer</p>
-              </div>
-            </div>
-            <div className="flex flex-col items-center text-center space-y-4">
-              <div className="h-32 w-32 rounded-full bg-muted flex items-center justify-center overflow-hidden">
-                <img
-                  src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg"
-                  alt="Team member"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold">Michael Lee</h3>
-                <p className="text-muted-foreground">Frontend Developer</p>
+                <h3 className="text-xl font-bold">Noman Nawaz Shareef</h3>
+                <p className="text-muted-foreground">
+                  Co-Founder & Full-Stack Developer
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-primary-foreground/20 dark:bg-primary-foreground/5">
+        {/* <section className="w-full py-12 md:py-24 lg:py-32 bg-primary-foreground/20 dark:bg-primary-foreground/5">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -207,7 +198,7 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
       <Footer />
     </div>
