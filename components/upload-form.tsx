@@ -24,6 +24,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
+import { api } from "@/lib/axios";
 
 const MAX_FILE_SIZE = 50 * 1024 * 1024;
 
@@ -95,13 +96,42 @@ export function UploadForm() {
     simulateUpload();
   }
 
-  function onFileSubmit(data: FileFormValues) {
+  async function onFileSubmit(data: FileFormValues) {
     if (selectedFile) {
       toast({
         title: "File Uploaded",
         description: `Processing ${selectedFile.name}`,
       });
-      simulateUpload();
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+
+      try {
+        setIsUploading(true);
+        const response = await api.post("/api/upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          onUploadProgress: (progressEvent) => {
+            const progress = Math.round(
+              (progressEvent.loaded * 100) / (progressEvent.total ?? 100)
+            );
+            setUploadProgress(progress);
+          },
+        });
+        console.log("response from api", response);
+
+        // router.push("/results");
+      } catch (error) {
+        const errorMessage =
+          error instanceof Error ? error.message : "Failed to upload file";
+        toast({
+          title: "Error",
+          description: errorMessage,
+          variant: "destructive",
+        });
+      } finally {
+        setIsUploading(false);
+      }
     }
   }
 
