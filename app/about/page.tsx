@@ -164,7 +164,7 @@ export default function AboutPage() {
                 />
               </div>
               <div>
-                <h3 className="text-xl font-bold">Noman Nawaz Shareef</h3>
+                <h3 className="text-xl font-bold">Noman Nawaz</h3>
                 <p className="text-muted-foreground">
                   Co-Founder & Full-Stack Developer
                 </p>
