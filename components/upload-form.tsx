@@ -25,6 +25,8 @@ import { useToast } from "@/hooks/use-toast";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 import { api } from "@/lib/axios";
+import { useErrorHandler } from "@/hooks/useErrorHandler";
+import { post } from "@/lib/client/api";
 
 const MAX_FILE_SIZE = 50 * 1024 * 1024;
 
@@ -57,6 +59,7 @@ export function UploadForm() {
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const router = useRouter();
   const { toast } = useToast();
+  const handleError = useErrorHandler();
 
   const urlForm = useForm<UrlFormValues>({
     resolver: zodResolver(urlFormSchema),
@@ -107,28 +110,16 @@ export function UploadForm() {
 
       try {
         setIsUploading(true);
-        const response = await api.post("/api/upload", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          onUploadProgress: (progressEvent) => {
-            const progress = Math.round(
-              (progressEvent.loaded * 100) / (progressEvent.total ?? 100)
-            );
-            setUploadProgress(progress);
-          },
-        });
+        const response = await post("/api/upload", formData);
         console.log("response from api", response);
-
+        toast({
+          title: "Success",
+          description: "File uploaded and processed successfully",
+        });
         // router.push("/results");
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : "Failed to upload file";
-        toast({
-          title: "Error",
-          description: errorMessage,
-          variant: "destructive",
-        });
+        const result = handleError(error);
+        console.error("Error uploading file:", result);
       } finally {
         setIsUploading(false);
       }
