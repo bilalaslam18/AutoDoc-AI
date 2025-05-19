@@ -7,6 +7,7 @@ import {
   createSuccessResponse,
   errorHandler,
 } from "@/middleware/error-handler";
+import { summarizeCode } from "@/services/langchain/langchainService";
 
 export async function POST(req: Request) {
   let tempDir = "";
@@ -107,6 +108,11 @@ export async function POST(req: Request) {
         };
       }
     });
+
+    const result = await summarizeCode(parsed[10].content || "");
+    console.log("File:", parsed[10].filename);
+    console.log("Content:", parsed[10].content);
+    console.log("Summary:", result);
 
     return createSuccessResponse({
       message: "ZIP extracted and parsed successfully",
